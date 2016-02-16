@@ -1,0 +1,27 @@
+<html>
+<head>
+
+
+</head>
+
+<body>
+<p>The list</p>
+<ul id="articles">
+</ul>
+
+  <script>
+  var showArticleList = function(response){
+    var list = document.getElementById("articles");
+    response.items.forEach(function(item){
+      var li = document.createElement('li');
+      // li.appendChild(document.createTextNode(item.title));
+      li.innerHTML = "<a href='"+item.url+"' target='_blank'>"+item.title+"</a>";
+      list.appendChild(li);
+    })
+
+  }
+  </script>
+  <script src="https://www.googleapis.com/blogger/v3/blogs/6321600142310040063/posts/search?q=label:ukulele&fields=items(title,url)&callback=showArticleList&key=AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></script>
+
+</body>
+</html>
