@@ -1,0 +1,25 @@
+{
+  "name": "blogger-labels",
+  "authors": [
+    "Florin Alexandrescu <pianosnake@gmail.com>"
+  ],
+  "description": "Get posts from Blogger with given label",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "blogger",
+    "label"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-ajax": "polymerelements/iron-ajax#^1.1.1"
+  }
+}

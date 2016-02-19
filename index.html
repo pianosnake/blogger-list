@@ -1,27 +1,67 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js">
+  </script>
+  <link rel="import" href="bower_components/polymer/polymer.html">
+  <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+  <title>Blogger Label List Element</title>
 </head>
 
 <body>
-<p>The list</p>
-<ul id="articles">
-</ul>
+  <dom-module id="blogger-list">
+    <template>
+      <iron-ajax auto url="{{url}}" handle-as="json" last-response="{{ajaxResponse}}"></iron-ajax>
+      <ul>
+        <template is="dom-repeat" items="[[ajaxResponse.items]]">
+          <li><a href="{{item.url}}">{{item.title}}</li>
+        </template>
+      </ul>
+    </template>
+    <script>
+        Polymer({
+          is: 'blogger-list',
+          properties: {
+            labels: String,
+            blogId: String,
+            apiKey: String
+          },
+          attached: function() {
+            if(this.labels){
+              this.url = this._getPostsByLabelUrl();
+            }else{
+              this.url = this._getPostsUrl();
+            }
+          },
+          _getPostsUrl: function(){
+            return "https://www.googleapis.com/blogger/v3/blogs/" + this.blogId + "/posts?maxResults=50&fields=items(title,url)" + "&key=" + this.apiKey;
+          },
+          _getPostsByLabelUrl: function(){
+            return "https://www.googleapis.com/blogger/v3/blogs/" + this.blogId + "/posts/search" + "?q=label:" + this.labels + "&fields=items(title,url)" + "&key=" + this.apiKey;
+          }
+        });
+    </script>
+  </dom-module>
 
-  <script>
-  var showArticleList = function(response){
-    var list = document.getElementById("articles");
-    response.items.forEach(function(item){
-      var li = document.createElement('li');
-      // li.appendChild(document.createTextNode(item.title));
-      li.innerHTML = "<a href='"+item.url+"' target='_blank'>"+item.title+"</a>";
-      list.appendChild(li);
-    })
+<p> My ukulele posts</p>
+  <blogger-list labels="ukulele" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
-  }
-  </script>
-  <script src="https://www.googleapis.com/blogger/v3/blogs/6321600142310040063/posts/search?q=label:ukulele&fields=items(title,url)&callback=showArticleList&key=AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></script>
+<p>My GIS posts</p>
+  <blogger-list labels="GIS" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+
+<p>My music posts</p>
+  <blogger-list labels="music" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+
+  <p>My music and GIS posts</p>
+    <blogger-list labels="music" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+
+<p>All of my posts</p>
+  <blogger-list blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+
+<p>You can also view posts with a particular label like this http://www.geotangents.com/search/label/ukulele
+<p>Adding ?alt=json-in-script&callback=myFunc doesn't output this as JSON unfortunately
 
 </body>
+
 </html>
