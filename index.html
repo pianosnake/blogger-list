@@ -34,18 +34,30 @@
               this.url = this._getPostsUrl();
             }
           },
+          _bloggerUrl: function(path, params){
+            var url = "https://www.googleapis.com/blogger/v3/blogs/" +this.blogId + path + "?maxResults=50&fields=items(title,url)&key=" +this.apiKey;
+            if(params){
+              for(var i in params){
+                url += "&" + i + "=" + params[i];
+              }
+            }
+            return url;
+          },
           _getPostsUrl: function(){
-            return "https://www.googleapis.com/blogger/v3/blogs/" + this.blogId + "/posts?maxResults=50&fields=items(title,url)" + "&key=" + this.apiKey;
+            return this._bloggerUrl("/posts");
           },
           _getPostsByLabelUrl: function(){
-            return "https://www.googleapis.com/blogger/v3/blogs/" + this.blogId + "/posts/search" + "?q=label:" + this.labels + "&fields=items(title,url)" + "&key=" + this.apiKey;
+            var labelsQuery = "label:" + this.labels.split(",").join("|label:");
+            return this._bloggerUrl("/posts/search",{
+              q: labelsQuery
+            });
           }
         });
     </script>
   </dom-module>
 
 <p> My ukulele posts</p>
-  <blogger-list labels="ukulele" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+    <blogger-list labels="ukulele" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
 <p>My GIS posts</p>
   <blogger-list labels="GIS" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
@@ -54,13 +66,10 @@
   <blogger-list labels="music" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
   <p>My music and GIS posts</p>
-    <blogger-list labels="music" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+    <blogger-list labels="music,GIS" blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
 <p>All of my posts</p>
   <blogger-list blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
-
-<p>You can also view posts with a particular label like this http://www.geotangents.com/search/label/ukulele
-<p>Adding ?alt=json-in-script&callback=myFunc doesn't output this as JSON unfortunately
 
 </body>
 
