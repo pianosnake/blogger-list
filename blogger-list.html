@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<dom-module id="blogger-list">
+  <template>
+    <iron-ajax auto url="{{url}}" handle-as="json" last-response="{{ajaxResponse}}"></iron-ajax>
+    <ul>
+      <template is="dom-repeat" items="[[ajaxResponse.items]]">
+        <li><a href="{{item.url}}">{{item.title}}</a></li>
+      </template>
+    </ul>
+  </template>
+  <script>
+    Polymer({
+      is: 'blogger-list',
+      properties: {
+        labels: String,
+        blogId: String,
+        apiKey: String
+      },
+      attached: function() {
+        if(this.labels){
+          this.url = this._getPostsByLabelUrl();
+        }else{
+          this.url = this._getPostsUrl();
+        }
+      },
+      _bloggerUrl: function(path, params){
+        var url = "https://www.googleapis.com/blogger/v3/blogs/" +this.blogId + path + "?maxResults=50&fields=items(title,url)&key=" +this.apiKey;
+        if(params){
+          for(var i in params){
+            url += "&" + i + "=" + params[i];
+          }
+        }
+        return url;
+      },
+      _getPostsUrl: function(){
+        return this._bloggerUrl("/posts");
+      },
+      _getPostsByLabelUrl: function(){
+        var labelsQuery = "label:" + this.labels.split(",").join("|label:");
+        return this._bloggerUrl("/posts/search",{
+          q: labelsQuery
+        });
+      }
+    });
+  </script>
+</dom-module>

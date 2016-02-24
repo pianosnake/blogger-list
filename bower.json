@@ -3,12 +3,13 @@
   "authors": [
     "Florin Alexandrescu <pianosnake@gmail.com>"
   ],
+  "version": "0.0.1",
   "description": "Get posts from Blogger with given label",
   "main": "index.html",
   "moduleType": [],
   "keywords": [
     "blogger",
-    "label"
+    "web-components"
   ],
   "license": "MIT",
   "homepage": "",
