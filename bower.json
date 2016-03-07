@@ -1,10 +1,10 @@
 {
-  "name": "blogger-labels",
+  "name": "blogger-list",
   "authors": [
     "Florin Alexandrescu <pianosnake@gmail.com>"
   ],
-  "version": "0.0.1",
-  "description": "Get posts from Blogger with given label",
+  "version": "0.0.2",
+  "description": "List Blogger posts",
   "main": "index.html",
   "moduleType": [],
   "keywords": [

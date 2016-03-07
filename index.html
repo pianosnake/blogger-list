@@ -4,13 +4,13 @@
 <head>
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="blogger-list.html">
-  <title>Blogger Label List Element</title>
+  <title>Blogger List HTML Element</title>
 </head>
 
 <body>
 
 <p>My ukulele posts</p>
-<blogger-list labels="ukulele" blog-id="6321600142310040063"
+<blogger-list labels="ukulele" blog-id="6321600142310040063" asc
               api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
 <p>My GIS posts</p>
@@ -22,11 +22,12 @@
               api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
 <p>My music and GIS posts</p>
-<blogger-list labels="music,GIS" blog-id="6321600142310040063"
+<blogger-list labels="music,GIS" blog-id="6321600142310040063" max-results=4
               api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
 <p>All of my posts</p>
-<blogger-list blog-id="6321600142310040063" api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+<blogger-list blog-id="6321600142310040063" max-results=51
+              api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
 
 </body>
 
