@@ -2,32 +2,60 @@
 <html>
 
 <head>
-  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="blogger-list.html">
+  <script src="blogger-list.js"></script>
+
   <title>Blogger List HTML Element</title>
+
+  <style>
+    div.box-list {
+      overflow: auto;
+    }
+
+    div.box-list ul {
+      list-style-type: none;
+    }
+
+    div.box-list li a {
+      color: white;
+      text-decoration: none;
+      font-family: sans-serif;
+    }
+
+    div.box-list li {
+      background-color: #00bfff;
+      border: 5px solid #fff;
+      text-align: center;
+      display: table;
+      float: left;
+      height: 150px;
+      margin: 10px;
+      width: 150px;
+    }
+
+  </style>
 </head>
 
 <body>
+  <h1>&lt;blogger-list/&gt;</h1>
+  <p>&lt;blogger-list/&gt; is a Web Component that creates an HTML list from Blogger posts. Features include querying by labels, date ordering, and result limits. </p>
+  <p>For example, here are my posts with the 'ukulele' label. This is a styled list.</p>
+  <div class="box-list">
+    <blogger-list labels="ukulele" blog-id="6321600142310040063" asc api-key="AIzaSyDmDP-qIOWHi7slq3DXr7Swpe55KjmHCQQ"></blogger-list>
+    <br>
+    <blogger-list labels="ukulele" blog-id="6321600142310040063" api-key="AIzaSyDmDP-qIOWHi7slq3DXr7Swpe55KjmHCQQ"></blogger-list>
+  </div>
 
-<p>My ukulele posts</p>
-<blogger-list labels="ukulele" blog-id="6321600142310040063" asc
-              api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+  <p>My GIS posts</p>
+  <blogger-list labels="GIS" blog-id="6321600142310040063" api-key="AIzaSyDmDP-qIOWHi7slq3DXr7Swpe55KjmHCQQ"></blogger-list>
 
-<p>My GIS posts</p>
-<blogger-list labels="GIS" blog-id="6321600142310040063"
-              api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+  <p>My music posts</p>
+  <blogger-list labels="music" blog-id="6321600142310040063" api-key="AIzaSyDmDP-qIOWHi7slq3DXr7Swpe55KjmHCQQ"></blogger-list>
 
-<p>My music posts</p>
-<blogger-list labels="music" blog-id="6321600142310040063"
-              api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+  <p>My music and GIS posts</p>
+  <blogger-list labels="music,GIS" blog-id="6321600142310040063" max-results=4 api-key="AIzaSyDmDP-qIOWHi7slq3DXr7Swpe55KjmHCQQ"></blogger-list>
 
-<p>My music and GIS posts</p>
-<blogger-list labels="music,GIS" blog-id="6321600142310040063" max-results=4
-              api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
-
-<p>All of my posts</p>
-<blogger-list blog-id="6321600142310040063" max-results=51
-              api-key="AIzaSyCK9jp0SSsD6CXPWAY2Z_XvaVZdrhoR4LU"></blogger-list>
+  <p>All of my posts</p>
+  <blogger-list blog-id="6321600142310040063" max-results=51 api-key="AIzaSyDmDP-qIOWHi7slq3DXr7Swpe55KjmHCQQ"></blogger-list>
 
 </body>
 
